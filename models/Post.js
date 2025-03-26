@@ -48,7 +48,7 @@ const PostSchema = new mongoose.Schema({
         type : mongoose.Schema.Types.ObjectId,
         ref: "User",
         required: [true, "Phone Number in Mandatory"],
-        default:true
+    
 
     }
 })

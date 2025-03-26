@@ -1,5 +1,5 @@
 const User = require("../models/User")
-const fs = require("fs")
+
 const jwt = require("jsonwebtoken")
 
 async function createUser(req, res) {
@@ -17,7 +17,7 @@ async function createUser(req, res) {
 
 async function getUser(req, res) {
     try {
-        let data = await User.findOne({ username: req.param.username })
+        let data = await User.findOne({ username: req.params.username })
         if (data)
             res.send({ result: "Done", data: data })
     } catch (error) {
@@ -31,9 +31,10 @@ async function inLogin(req, res) {
     try {
         let data = await User.findOne({ email: req.body.email })
         if (data) {
+            let finaldata = [data.name , data.email, data.username]
             if (req.body.password == data.password) {
                 let key = process.env.JWT_SECRET_KEY_USER
-                jwt.sign({ data }, key, {expiresIn: 60*60*24*2}, (error, token) => {
+                jwt.sign({ finaldata }, key, {expiresIn: 60*60*24*2}, (error, token) => {
                     if (error) {
                         res.send({ result: "Fail",error:"Internal server error" })
                     }

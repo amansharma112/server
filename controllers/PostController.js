@@ -25,7 +25,10 @@ async function getPost(req,res){
 
 async function getSinglePost(req, res) {
     try {
-        let data = await Post.findOne({ slug:req.param.slug })
+        console.log(req.param);
+        console.log(req.params.slug);
+        
+        let data = await Post.findOne({ slug: req.params.slug})
         console.log(data);
         
         // let data = await Post.find()
