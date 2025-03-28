@@ -45,9 +45,9 @@ const PostSchema = new mongoose.Schema({
         required: [true, "Emain in Mendatory"]
     },
     author: {
-        type : mongoose.Schema.Types.ObjectId,
-        ref: "User",
-        required: [true, "Phone Number in Mandatory"],
+        type : String,
+        required:[true, "author is mandetory"]
+        
     
 
     }

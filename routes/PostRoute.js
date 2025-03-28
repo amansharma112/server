@@ -6,7 +6,7 @@ const PostRoutes = require("express").Router()
 
 
 
-PostRoutes.post("/",verifyUser ,createPost)
+PostRoutes.post("/" ,createPost)
 PostRoutes.get("/:slug",verifyUser ,getSinglePost)
 PostRoutes.get("/",verifyUser ,getPost)
 
