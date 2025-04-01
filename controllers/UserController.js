@@ -44,7 +44,12 @@ async function inLogin(req, res) {
         let data = await User.findOne({ email: req.body.email })
         if (data) {
             
-            let finaldata = [data._id, data.email, data.username]
+            // let finaldata = [data._id, data.email, data.username]
+            let finaldata = {
+                id:data.id,
+                email:data.email,
+                username:data.username
+            }
             if (await bcrypt.compare(req.body.password,data.password)) {
                 let key = process.env.JWT_SECRET_KEY_USER
                 jwt.sign({ finaldata }, key, { expiresIn: 60 * 60 * 24 * 2 }, (error, token) => {
@@ -53,7 +58,7 @@ async function inLogin(req, res) {
                     }
                     else
                         res.send({ result: "Done", data: finaldata, token: token })
-                    console.log(finaldata);
+                    
                     
                 })
                 // res.send({ result: "Done", data: data })
