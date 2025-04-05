@@ -36,12 +36,12 @@ const PostSchema = new mongoose.Schema({
     },
     slug: {
         type: String,
-        unique: true,
+        
         required: [true, "slug is Mendatory"]
     },
     description: {
         type: String,
-        unique: true,
+        
         required: [true, "Emain in Mendatory"]
     },
     author: {
